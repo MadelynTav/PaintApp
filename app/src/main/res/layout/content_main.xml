@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:background="#FFCCCCC"
+    android:orientation="vertical"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="nyc.apprentice.madelyntavarez.paintapp.MainActivity"
+    tools:showIn="@layout/activity_main">
+
+    <nyc.apprentice.madelyntavarez.paintapp.CustomView
+        android:layout_width="fill_parent"
+        android:layout_height="440dp"
+        android:background="#FFFFFF"
+        android:layout_marginBottom="5dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/button_layout"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:src="@drawable/brush"
+            android:id="@+id/brush"
+            android:scaleType="centerCrop" />
+        <ImageButton
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/color_picker"
+            android:id="@+id/color"/>
+        <ImageButton
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/save"
+
+            android:scaleType="centerCrop"
+            android:layout_marginRight="20dp"
+            android:id="@+id/save"/>
+        <ImageButton
+            android:layout_width="40dp"
+            android:src="@drawable/eraser"
+            android:scaleType="centerCrop"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:id="@+id/erase"/>
+
+        <ImageButton
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="75dp"
+            android:id="@+id/trash"
+            android:scaleType="centerCrop"
+            android:src="@drawable/trash"/>
+
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
