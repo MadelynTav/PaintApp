@@ -10,6 +10,7 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -19,6 +20,9 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageButton;
+import android.widget.Toast;
+
+import java.util.UUID;
 
 import butterknife.Bind;
 import butterknife.BindDimen;
@@ -30,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     ImageButton currColor;
     ImageButton erase;
     ImageButton trash;
+    ImageButton save;
     float smallBrush;
     float mediumBrush;
     float largeBrush;
@@ -37,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     Dialog colorDialog;
     Context context=this;
     Dialog brushDialog;
+
 
 
     @Override
@@ -50,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
         smallBrush = getResources().getInteger(R.integer.small_size);
         mediumBrush = getResources().getInteger(R.integer.medium_size);
         largeBrush = getResources().getInteger(R.integer.large_size);
+        save = (ImageButton) findViewById(R.id.save);
         trash = (ImageButton) findViewById(R.id.trash);
 
     }
@@ -97,6 +104,25 @@ public class MainActivity extends AppCompatActivity {
                 customView.clearCanvas();
 
             }
+        });
+
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                customView.setDrawingCacheEnabled(true);
+                String imgSaved = MediaStore.Images.Media.insertImage(
+                        getContentResolver(), customView.getDrawingCache(),
+                        UUID.randomUUID().toString()+".png", "drawing");
+
+                if (imgSaved!=null){
+                    Toast.makeText(context, "Image Saved!",Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(context, "Unable To Save Image! Try Again",Toast.LENGTH_SHORT).show();
+                }
+
+                customView.destroyDrawingCache();
+            }
+
         });
     }
 
