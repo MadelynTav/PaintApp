@@ -137,6 +137,10 @@ public class CustomView extends View {
         }
 
         else drawPaint.setXfermode(null);
+    }
 
+    public void clearCanvas(){
+        invalidate();
+        drawCanvas.drawColor(Color.WHITE);
     }
 }

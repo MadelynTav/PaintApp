@@ -3,6 +3,7 @@ package nyc.apprentice.madelyntavarez.paintapp;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     ImageButton currBrushSize;
     ImageButton currColor;
     ImageButton erase;
+    ImageButton trash;
     float smallBrush;
     float mediumBrush;
     float largeBrush;
@@ -48,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
         smallBrush = getResources().getInteger(R.integer.small_size);
         mediumBrush = getResources().getInteger(R.integer.medium_size);
         largeBrush = getResources().getInteger(R.integer.large_size);
+        trash = (ImageButton) findViewById(R.id.trash);
 
     }
 
@@ -85,6 +88,14 @@ public class MainActivity extends AppCompatActivity {
                 brushDialog.setContentView(R.layout.brush_size_picker);
                 brushDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
                 brushDialog.show();
+            }
+        });
+
+        trash.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                customView.clearCanvas();
+
             }
         });
     }
