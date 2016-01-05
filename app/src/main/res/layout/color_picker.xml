@@ -2,48 +2,72 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="#00ffffff">
 
     <ImageButton
         android:layout_width="40dp"
         android:layout_height="40dp"
+        android:layout_marginBottom="10dp"
         android:id="@+id/red"
+        android:onClick="changeBrushColor"
+        android:tag="#F80308"
         android:contentDescription="@string/red"
         android:background="@color/red"/>
     <ImageButton
         android:layout_width="40dp"
         android:layout_height="40dp"
+        android:layout_marginBottom="10dp"
+        android:onClick="changeBrushColor"
         android:id="@+id/blue"
+        android:tag="#3003F8"
         android:background="@color/blue"/>
     <ImageButton
         android:layout_width="40dp"
         android:layout_height="40dp"
+        android:layout_marginBottom="10dp"
+        android:tag="#10AB0D"
+        android:onClick="changeBrushColor"
         android:background="@color/green"
         android:id="@+id/green"/>
     <ImageButton
         android:layout_width="40dp"
         android:layout_height="40dp"
+        android:layout_marginBottom="10dp"
+        android:tag="#F8F803"
+        android:onClick="changeBrushColor"
         android:background="@color/yellow"
         android:id="@+id/yellow"/>
     <ImageButton
         android:layout_width="40dp"
         android:layout_height="40dp"
+        android:layout_marginBottom="10dp"
+        android:tag="#FC7201"
         android:background="@color/orange"
+        android:onClick="changeBrushColor"
         android:id="@+id/orange"/>
     <ImageButton
         android:layout_width="40dp"
         android:layout_height="40dp"
+        android:layout_marginBottom="10dp"
+        android:tag="#9A1493"
         android:background="@color/purple"
+        android:onClick="changeBrushColor"
         android:id="@+id/purple"/>
     <ImageButton
         android:layout_width="40dp"
         android:layout_height="40dp"
+        android:tag="#F1339B"
+        android:layout_marginBottom="10dp"
+        android:onClick="changeBrushColor"
         android:background="@color/pink"
         android:id="@+id/pink"/>
     <ImageButton
         android:layout_width="40dp"
         android:layout_height="40dp"
+        android:tag="#050402"
+        android:onClick="changeBrushColor"
         android:background="@color/black"
         android:id="@+id/black"/>
 

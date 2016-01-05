@@ -6,22 +6,28 @@
 
     <ImageButton
         android:layout_width="wrap_content"
-        android:layout_height="10dp"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:tag="10"
+        android:onClick="changeBrushSize"
         android:src="@drawable/small"
         android:id="@+id/small_brush"/>
 
     <ImageButton
         android:layout_width="wrap_content"
-        android:layout_height="10dp"
+        android:layout_height="wrap_content"
         android:id="@+id/medium_brush"
+        android:tag="20"
+        android:onClick="changeBrushSize"
         android:src="@drawable/medium"
         android:layout_weight="1"/>
 
     <ImageButton
         android:layout_width="wrap_content"
-        android:layout_height="10dp"
+        android:layout_height="wrap_content"
         android:id="@+id/large_brush"
+        android:tag="30"
+        android:onClick="changeBrushSize"
         android:src="@drawable/large"
         android:layout_weight="1"/>
 
