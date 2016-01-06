@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:orientation="vertical"
+    android:id="@+id/linearLayout"
     android:layout_height="match_parent">
 
     <ImageButton
@@ -9,6 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:tag="10"
+        android:layout_gravity="center"
         android:background="#00ffffff"
         android:onClick="changeBrushSize"
         android:src="@drawable/small"
@@ -20,6 +22,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/medium_brush"
         android:tag="20"
+        android:layout_gravity="center"
         android:background="#00ffffff"
         android:onClick="changeBrushSize"
         android:src="@drawable/medium"
@@ -30,6 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/large_brush"
+        android:layout_gravity="center"
         android:tag="30"
         android:onClick="changeBrushSize"
         android:src="@drawable/large"

@@ -3,6 +3,7 @@ package nyc.apprentice.madelyntavarez.paintapp;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -16,12 +17,17 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.WindowManager;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.UUID;
 
 import butterknife.Bind;
@@ -30,11 +36,12 @@ import butterknife.BindDimen;
 public class MainActivity extends AppCompatActivity {
 
 
-    ImageButton currBrushSize;
-    ImageButton currColor;
-    ImageButton erase;
-    ImageButton trash;
-    ImageButton save;
+    FloatingActionButton currBrushSize;
+    FloatingActionButton currColor;
+    FloatingActionButton  erase;
+    FloatingActionButton  trash;
+    FloatingActionButton save;
+    FloatingActionButton share;
     float smallBrush;
     float mediumBrush;
     float largeBrush;
@@ -49,15 +56,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_main);
-        currBrushSize= (ImageButton) findViewById(R.id.brush_button);
-        currColor = (ImageButton) findViewById(R.id.color_button);
+        currColor = (FloatingActionButton) findViewById(R.id.color_button);
+        currBrushSize= (FloatingActionButton) findViewById(R.id.brush_button);
         customView = (CustomView) findViewById(R.id.drawing_view);
-        erase = (ImageButton) findViewById(R.id.erase);
+        erase = (FloatingActionButton) findViewById(R.id.erase);
         smallBrush = getResources().getInteger(R.integer.small_size);
         mediumBrush = getResources().getInteger(R.integer.medium_size);
         largeBrush = getResources().getInteger(R.integer.large_size);
-        save = (ImageButton) findViewById(R.id.save);
-        trash = (ImageButton) findViewById(R.id.trash);
+        save = (FloatingActionButton) findViewById(R.id.save);
+        trash = (FloatingActionButton) findViewById(R.id.trash);
+        customView.setDrawingCacheEnabled(true);
 
     }
 
@@ -94,6 +102,7 @@ public class MainActivity extends AppCompatActivity {
                 brushDialog = new Dialog(context);
                 brushDialog.setContentView(R.layout.brush_size_picker);
                 brushDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+
                 brushDialog.show();
             }
         });
@@ -124,6 +133,17 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
+
+//        share.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                try {
+//                    //Bitmap bitmap= customView.getDrawingCache().compress(Bitmap.CompressFormat.JPEG, 100, new FileOutputStream(new File("/mnt/sdcard/arun.jpg")));
+//                } catch (Exception e) {
+//                    Log.e("Error--------->", e.toString());
+//                }
+//            }
+//        });
     }
 
     public void changeBrushSize(View v){
@@ -143,7 +163,5 @@ public class MainActivity extends AppCompatActivity {
         int color1= Color.parseColor(color);
         customView.setPaintColor(color1);
         colorDialog.dismiss();
-
-
     }
 }
