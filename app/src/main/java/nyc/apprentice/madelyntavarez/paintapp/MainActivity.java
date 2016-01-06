@@ -2,44 +2,27 @@ package nyc.apprentice.madelyntavarez.paintapp;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
+import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
 import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.WindowManager;
-import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.Toast;
-
 import java.io.File;
-import java.io.FileOutputStream;
 import java.util.UUID;
-
-import butterknife.Bind;
-import butterknife.BindDimen;
 
 public class MainActivity extends AppCompatActivity {
 
 
     FloatingActionButton currBrushSize;
     FloatingActionButton currColor;
-    FloatingActionButton  erase;
-    FloatingActionButton  trash;
+    FloatingActionButton erase;
+    FloatingActionButton trash;
     FloatingActionButton save;
     FloatingActionButton share;
     float smallBrush;
@@ -47,9 +30,10 @@ public class MainActivity extends AppCompatActivity {
     float largeBrush;
     private CustomView customView;
     Dialog colorDialog;
-    Context context=this;
+    Context context = this;
     Dialog brushDialog;
-
+    String imgSaved;
+    String path;
 
 
     @Override
@@ -57,7 +41,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_main);
         currColor = (FloatingActionButton) findViewById(R.id.color_button);
-        currBrushSize= (FloatingActionButton) findViewById(R.id.brush_button);
+        currBrushSize = (FloatingActionButton) findViewById(R.id.brush_button);
+        share = (FloatingActionButton) findViewById(R.id.share);
         customView = (CustomView) findViewById(R.id.drawing_view);
         erase = (FloatingActionButton) findViewById(R.id.erase);
         smallBrush = getResources().getInteger(R.integer.small_size);
@@ -121,12 +106,14 @@ public class MainActivity extends AppCompatActivity {
                 customView.setDrawingCacheEnabled(true);
                 String imgSaved = MediaStore.Images.Media.insertImage(
                         getContentResolver(), customView.getDrawingCache(),
-                        UUID.randomUUID().toString()+".png", "drawing");
+                        UUID.randomUUID().toString() + ".png", "drawing");
+                path = UUID.randomUUID().toString() + ".png";
 
-                if (imgSaved!=null){
-                    Toast.makeText(context, "Image Saved!",Toast.LENGTH_SHORT).show();
+                Log.i("SavedString", imgSaved);
+                if (imgSaved != null) {
+                    Toast.makeText(context, "Image Saved!", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(context, "Unable To Save Image! Try Again",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Unable To Save Image! Try Again", Toast.LENGTH_SHORT).show();
                 }
 
                 customView.destroyDrawingCache();
@@ -134,33 +121,33 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
-//        share.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                try {
-//                    //Bitmap bitmap= customView.getDrawingCache().compress(Bitmap.CompressFormat.JPEG, 100, new FileOutputStream(new File("/mnt/sdcard/arun.jpg")));
-//                } catch (Exception e) {
-//                    Log.e("Error--------->", e.toString());
-//                }
-//            }
-//        });
+        share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                File sharefile = customView.shareImage(context);
+                Intent share = new Intent(android.content.Intent.ACTION_SEND);
+                share.setType("image/jpeg");
+                share.putExtra(Intent.EXTRA_STREAM, Uri.parse("file://" + sharefile));
+                startActivity(Intent.createChooser(share, "Share Image"));
+            }
+        });
     }
 
-    public void changeBrushSize(View v){
-        float tag= Integer.parseInt(String.valueOf(v.getTag()));
+    public void changeBrushSize(View v) {
+        float tag = Integer.parseInt(String.valueOf(v.getTag()));
         customView.setBrushSize(tag);
 
         if (!customView.isErase()) {
             customView.setLastBrushSize(tag);
-            Log.i("size","UP");
+            Log.i("size", "UP");
         }
 
         brushDialog.dismiss();
     }
 
-    public void changeBrushColor(View v){
-        String color=v.getTag().toString();
-        int color1= Color.parseColor(color);
+    public void changeBrushColor(View v) {
+        String color = v.getTag().toString();
+        int color1 = Color.parseColor(color);
         customView.setPaintColor(color1);
         colorDialog.dismiss();
     }

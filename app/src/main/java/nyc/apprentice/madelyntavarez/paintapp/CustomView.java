@@ -8,12 +8,18 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.PaintDrawable;
 import android.graphics.drawable.shapes.Shape;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 import butterknife.Bind;
 import butterknife.BindDimen;
@@ -98,7 +104,23 @@ public class CustomView extends View {
         }
         invalidate();
         return true;
+    }
 
+    //save bitmap to file in order to share via intent
+    public File shareImage(Context context){
+        File cache = context.getExternalCacheDir();
+        File sharefile = new File(cache, "toshare.png");
+        drawCanvas.setBitmap(canvasBitmap);
+        try {
+            FileOutputStream out = new FileOutputStream(sharefile);
+            canvasBitmap.compress(Bitmap.CompressFormat.PNG, 100, out);
+            out.flush();
+            out.close();
+        } catch (IOException e) {
+            Log.e("err",e.toString());
+        }
+
+        return sharefile;
     }
 
     public void setBrushSize(float newSize){

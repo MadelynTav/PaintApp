@@ -20,48 +20,57 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
+        android:gravity="center"
         android:id="@+id/button_layout"
         android:orientation="horizontal">
 
 
         <android.support.design.widget.FloatingActionButton
-            android:layout_width="60dp"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
-           android:layout_marginRight="10dp"
+           android:layout_marginRight="5dp"
             android:src="@drawable/brush"
             android:id="@+id/brush_button"
             android:scaleType="centerCrop" />
 
         <android.support.design.widget.FloatingActionButton
-            android:layout_width="60dp"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
+            android:layout_marginRight="5dp"
             android:scaleType="centerCrop"
             android:src="@drawable/color_picker"
             android:id="@+id/color_button"/>
 
         <android.support.design.widget.FloatingActionButton
-            android:layout_width="60dp"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:src="@drawable/save"
             android:scaleType="centerCrop"
-            android:layout_marginRight="10dp"
+            android:layout_marginRight="5dp"
             android:id="@+id/save"/>
 
         <android.support.design.widget.FloatingActionButton
-            android:layout_width="60dp"
+            android:layout_width="50dp"
             android:src="@drawable/eraser"
             android:scaleType="centerCrop"
             android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
+            android:layout_marginRight="5dp"
             android:id="@+id/erase"/>
 
         <android.support.design.widget.FloatingActionButton
-            android:layout_width="60dp"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:id="@+id/trash"
+            android:layout_marginRight="5dp"
             android:scaleType="centerCrop"
             android:src="@drawable/trash"/>
+
+        <android.support.design.widget.FloatingActionButton
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/share"
+            android:src="@drawable/ic_stat_name"
+            android:scaleType="centerCrop" />
 
 
     </LinearLayout>
