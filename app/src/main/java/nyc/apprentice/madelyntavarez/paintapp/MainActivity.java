@@ -32,9 +32,6 @@ public class MainActivity extends AppCompatActivity {
     Dialog colorDialog;
     Context context = this;
     Dialog brushDialog;
-    String imgSaved;
-    String path;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +48,6 @@ public class MainActivity extends AppCompatActivity {
         save = (FloatingActionButton) findViewById(R.id.save);
         trash = (FloatingActionButton) findViewById(R.id.trash);
         customView.setDrawingCacheEnabled(true);
-
     }
 
     @Override
@@ -85,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 customView.setErase(true);
                 brushDialog = new Dialog(context);
-                brushDialog.setContentView(R.layout.brush_size_picker);
+                brushDialog.setContentView(R.layout.eraser_size_picker);
                 brushDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
 
                 brushDialog.show();
@@ -107,9 +103,7 @@ public class MainActivity extends AppCompatActivity {
                 String imgSaved = MediaStore.Images.Media.insertImage(
                         getContentResolver(), customView.getDrawingCache(),
                         UUID.randomUUID().toString() + ".png", "drawing");
-                path = UUID.randomUUID().toString() + ".png";
 
-                Log.i("SavedString", imgSaved);
                 if (imgSaved != null) {
                     Toast.makeText(context, "Image Saved!", Toast.LENGTH_SHORT).show();
                 } else {
@@ -126,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 File sharefile = customView.shareImage(context);
                 Intent share = new Intent(android.content.Intent.ACTION_SEND);
-                share.setType("image/jpeg");
+                share.setType("image/png");
                 share.putExtra(Intent.EXTRA_STREAM, Uri.parse("file://" + sharefile));
                 startActivity(Intent.createChooser(share, "Share Image"));
             }
@@ -136,12 +130,10 @@ public class MainActivity extends AppCompatActivity {
     public void changeBrushSize(View v) {
         float tag = Integer.parseInt(String.valueOf(v.getTag()));
         customView.setBrushSize(tag);
-
         if (!customView.isErase()) {
             customView.setLastBrushSize(tag);
             Log.i("size", "UP");
         }
-
         brushDialog.dismiss();
     }
 
