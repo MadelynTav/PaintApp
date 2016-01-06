@@ -7,6 +7,8 @@
         android:height="@dimen/large_brush"
         android:width="@dimen/large_brush"/>
 
-    <solid android:color="#FF666666"/>
+    <solid android:color="@color/black"/>
+
+    <stroke android:width="2dp"/>
 
 </shape>

@@ -28,7 +28,7 @@ public class CustomView extends View {
 
     private Path drawPath;
     Paint canvasPaint, drawPaint;
-    private int paintColor= 0xFF660000;
+    private int paintColor= 0xFF0000ff;
     private Canvas drawCanvas;
     float brushSize;
     float lastBrushSize;
@@ -58,6 +58,7 @@ public class CustomView extends View {
 
         brushSize= getResources().getInteger(R.integer.medium_size);
         lastBrushSize = brushSize;
+        lastColor=paintColor;
         drawPaint.setStrokeWidth(brushSize);
     }
 
