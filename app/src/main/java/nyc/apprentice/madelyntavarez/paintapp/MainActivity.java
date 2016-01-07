@@ -149,4 +149,7 @@ public class MainActivity extends AppCompatActivity {
         customView.setPaintColor(color1);
         colorDialog.dismiss();
     }
+
+    //TODO add shapes and add onTouchListener so user can drag shapes around and create multiple
+    //shapes
 }
