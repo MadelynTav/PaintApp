@@ -120,6 +120,7 @@ public class CustomView extends View {
         }
         float pixelAmount = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, newSize, getResources().getDisplayMetrics());
         brushSize = pixelAmount;
+        lastBrushSize = brushSize;
         drawPaint.setStrokeWidth(brushSize);
     }
 

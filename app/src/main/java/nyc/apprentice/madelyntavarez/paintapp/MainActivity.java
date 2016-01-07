@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
                 customView.setErase(false);
                 brushDialog = new Dialog(context);
                 brushDialog.setContentView(R.layout.brush_size_picker);
-                colorDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+                brushDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
                 brushDialog.setCanceledOnTouchOutside(true);
                 brushDialog.show();
             }
