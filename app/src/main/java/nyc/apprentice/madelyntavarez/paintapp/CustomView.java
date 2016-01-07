@@ -42,7 +42,6 @@ public class CustomView extends View {
         drawPaint = new Paint();
         drawPaint.setColor(paintColor);
 
-
         drawPaint.setAntiAlias(true);
         drawPaint.setStrokeWidth(20);
         drawPaint.setStyle(Paint.Style.STROKE);
@@ -50,7 +49,6 @@ public class CustomView extends View {
         drawPaint.setStrokeCap(Paint.Cap.ROUND);
 
         canvasPaint = new Paint(Paint.DITHER_FLAG);
-
 
         brushSize = getResources().getInteger(R.integer.medium_size);
         lastBrushSize = brushSize;
@@ -96,7 +94,7 @@ public class CustomView extends View {
         return true;
     }
 
-    //save bitmap to file in order to share via intent
+    //save bitmap to file in order to shareButton via intent
     public File shareImage(Context context) {
         File cache = context.getExternalCacheDir();
         File sharefile = new File(cache, "toshare.png");

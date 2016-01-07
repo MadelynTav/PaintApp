@@ -12,24 +12,20 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Toast;
-
 import java.io.File;
 import java.util.UUID;
+import butterknife.Bind;
+import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
 
-
-    FloatingActionButton currBrushSize;
-    FloatingActionButton currColor;
-    FloatingActionButton erase;
-    FloatingActionButton trash;
-    FloatingActionButton save;
-    FloatingActionButton share;
-    float smallBrush;
-    float mediumBrush;
-    float largeBrush;
+    @Bind(R.id.brush_button)FloatingActionButton brushButton;
+    @Bind(R.id.color_button)FloatingActionButton colorButton;
+    @Bind(R.id.erase)FloatingActionButton eraseButton;
+    @Bind(R.id.trash)FloatingActionButton trashButton;
+    @Bind(R.id.save)FloatingActionButton saveButton;
+    @Bind(R.id.share)FloatingActionButton shareButton;
     private CustomView customView;
     Dialog colorDialog;
     Context context = this;
@@ -39,62 +35,52 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_main);
-        currColor = (FloatingActionButton) findViewById(R.id.color_button);
-        currBrushSize = (FloatingActionButton) findViewById(R.id.brush_button);
-        share = (FloatingActionButton) findViewById(R.id.share);
         customView = (CustomView) findViewById(R.id.drawing_view);
-        erase = (FloatingActionButton) findViewById(R.id.erase);
-        smallBrush = getResources().getInteger(R.integer.small_size);
-        mediumBrush = getResources().getInteger(R.integer.medium_size);
-        largeBrush = getResources().getInteger(R.integer.large_size);
-        save = (FloatingActionButton) findViewById(R.id.save);
-        trash = (FloatingActionButton) findViewById(R.id.trash);
         customView.setDrawingCacheEnabled(true);
+        ButterKnife.bind(this);
+        setUpClickListeners();
 
 
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        currBrushSize.setOnClickListener(new View.OnClickListener() {
+    private void setUpClickListeners() {
+        brushButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 customView.setErase(false);
                 brushDialog = new Dialog(context);
                 brushDialog.setContentView(R.layout.brush_size_picker);
-                brushDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+                brushDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 brushDialog.setCanceledOnTouchOutside(true);
                 brushDialog.show();
             }
         });
 
-        currColor.setOnClickListener(new View.OnClickListener() {
+        colorButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 customView.setErase(false);
                 colorDialog = new Dialog(context);
                 colorDialog.setContentView(R.layout.color_picker);
-                colorDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+                colorDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 colorDialog.setCanceledOnTouchOutside(true);
                 colorDialog.show();
             }
         });
 
-        erase.setOnClickListener(new View.OnClickListener() {
+        eraseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 customView.setErase(true);
                 brushDialog = new Dialog(context);
                 brushDialog.setContentView(R.layout.eraser_size_picker);
-                brushDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+                brushDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 brushDialog.setCanceledOnTouchOutside(true);
                 brushDialog.show();
             }
         });
 
-        trash.setOnClickListener(new View.OnClickListener() {
+        trashButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 customView.clearCanvas();
@@ -102,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        save.setOnClickListener(new View.OnClickListener() {
+        saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 customView.setDrawingCacheEnabled(true);
@@ -121,11 +107,11 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
-        share.setOnClickListener(new View.OnClickListener() {
+        shareButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 File sharefile = customView.shareImage(context);
-                Intent share = new Intent(android.content.Intent.ACTION_SEND);
+                Intent share = new Intent(Intent.ACTION_SEND);
                 share.setType("image/png");
                 share.putExtra(Intent.EXTRA_STREAM, Uri.parse("file://" + sharefile));
                 startActivity(Intent.createChooser(share, "Share Image"));
