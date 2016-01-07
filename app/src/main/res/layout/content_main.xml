@@ -11,7 +11,7 @@
 
     <nyc.apprentice.madelyntavarez.paintapp.CustomView
         android:layout_width="fill_parent"
-        android:layout_height="440dp"
+        android:layout_height="540dp"
         android:id="@+id/drawing_view"
         android:background="#FFFFFF"
         android:layout_marginBottom="20dp" />
