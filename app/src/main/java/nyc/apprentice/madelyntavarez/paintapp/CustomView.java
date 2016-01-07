@@ -100,6 +100,7 @@ public class CustomView extends View {
     public File shareImage(Context context) {
         File cache = context.getExternalCacheDir();
         File sharefile = new File(cache, "toshare.png");
+
         drawCanvas.setBitmap(canvasBitmap);
         try {
             FileOutputStream out = new FileOutputStream(sharefile);

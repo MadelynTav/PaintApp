@@ -150,6 +150,4 @@ public class MainActivity extends AppCompatActivity {
         colorDialog.dismiss();
     }
 
-    //TODO add shapes and add onTouchListener so user can drag shapes around and create multiple
-    //shapes
 }

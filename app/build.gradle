@@ -7,7 +7,7 @@ android {
     defaultConfig {
         applicationId "nyc.apprentice.madelyntavarez.paintapp"
         minSdkVersion 19
-        targetSdkVersion 23
+        targetSdkVersion 22
         versionCode 1
         versionName "1.0"
     }
