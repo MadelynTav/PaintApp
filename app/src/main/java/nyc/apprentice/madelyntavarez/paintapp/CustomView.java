@@ -6,11 +6,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.PaintDrawable;
-import android.graphics.drawable.shapes.Shape;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.util.TypedValue;
@@ -21,20 +16,15 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-import butterknife.Bind;
-import butterknife.BindDimen;
-
 /**
  * Created by madelyntavarez on 1/4/16.
  */
-
-
 
 public class CustomView extends View {
 
     private Path drawPath;
     Paint canvasPaint, drawPaint;
-    private int paintColor= 0xFF0000ff;
+    private int paintColor = 0xFF0000ff;
     private Canvas drawCanvas;
     float brushSize;
     float lastBrushSize;
@@ -47,7 +37,7 @@ public class CustomView extends View {
         setUpDrawing();
     }
 
-    public void setUpDrawing(){
+    public void setUpDrawing() {
         drawPath = new Path();
         drawPaint = new Paint();
         drawPaint.setColor(paintColor);
@@ -62,9 +52,9 @@ public class CustomView extends View {
         canvasPaint = new Paint(Paint.DITHER_FLAG);
 
 
-        brushSize= getResources().getInteger(R.integer.medium_size);
+        brushSize = getResources().getInteger(R.integer.medium_size);
         lastBrushSize = brushSize;
-        lastColor=paintColor;
+        lastColor = paintColor;
         drawPaint.setStrokeWidth(brushSize);
     }
 
@@ -107,7 +97,7 @@ public class CustomView extends View {
     }
 
     //save bitmap to file in order to share via intent
-    public File shareImage(Context context){
+    public File shareImage(Context context) {
         File cache = context.getExternalCacheDir();
         File sharefile = new File(cache, "toshare.png");
         drawCanvas.setBitmap(canvasBitmap);
@@ -117,33 +107,33 @@ public class CustomView extends View {
             out.flush();
             out.close();
         } catch (IOException e) {
-            Log.e("err",e.toString());
+            Log.e("err", e.toString());
         }
 
         return sharefile;
     }
 
-    public void setBrushSize(float newSize){
+    public void setBrushSize(float newSize) {
         invalidate();
-        if (!isErase()){
+        if (!isErase()) {
             drawPaint.setColor(lastColor);
         }
-        float pixelAmount= TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, newSize, getResources().getDisplayMetrics());
-        brushSize=pixelAmount;
+        float pixelAmount = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, newSize, getResources().getDisplayMetrics());
+        brushSize = pixelAmount;
         drawPaint.setStrokeWidth(brushSize);
     }
 
-    public void setLastBrushSize(float lastBrushSize){
-        this.lastBrushSize=lastBrushSize;
+    public void setLastBrushSize(float lastBrushSize) {
+        this.lastBrushSize = lastBrushSize;
         setBrushSize(lastBrushSize);
     }
 
     public void setPaintColor(int paintColor) {
         invalidate();
-        brushSize=lastBrushSize;
+        brushSize = lastBrushSize;
         drawPaint.setStrokeWidth(brushSize);
         this.paintColor = paintColor;
-        lastColor=paintColor;
+        lastColor = paintColor;
         drawPaint.setColor(paintColor);
 
     }
@@ -155,14 +145,12 @@ public class CustomView extends View {
     public void setErase(boolean erase) {
         this.erase = erase;
 
-        if(isErase()) {
+        if (isErase()) {
             drawPaint.setColor(Color.WHITE);
-        }
-
-        else drawPaint.setXfermode(null);
+        } else drawPaint.setXfermode(null);
     }
 
-    public void clearCanvas(){
+    public void clearCanvas() {
         invalidate();
         drawCanvas.drawColor(Color.WHITE);
     }

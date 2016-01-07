@@ -14,7 +14,7 @@
         android:layout_height="440dp"
         android:id="@+id/drawing_view"
         android:background="#FFFFFF"
-        android:layout_marginBottom="20dp"/>
+        android:layout_marginBottom="20dp" />
 
 
     <LinearLayout
@@ -28,7 +28,7 @@
         <android.support.design.widget.FloatingActionButton
             android:layout_width="50dp"
             android:layout_height="wrap_content"
-           android:layout_marginRight="5dp"
+            android:layout_marginRight="5dp"
             android:src="@drawable/brush"
             android:id="@+id/brush_button"
             android:scaleType="centerCrop" />
@@ -39,7 +39,7 @@
             android:layout_marginRight="5dp"
             android:scaleType="centerCrop"
             android:src="@drawable/color_picker"
-            android:id="@+id/color_button"/>
+            android:id="@+id/color_button" />
 
         <android.support.design.widget.FloatingActionButton
             android:layout_width="50dp"
@@ -47,7 +47,7 @@
             android:src="@drawable/save"
             android:scaleType="centerCrop"
             android:layout_marginRight="5dp"
-            android:id="@+id/save"/>
+            android:id="@+id/save" />
 
         <android.support.design.widget.FloatingActionButton
             android:layout_width="50dp"
@@ -55,7 +55,7 @@
             android:scaleType="centerCrop"
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp"
-            android:id="@+id/erase"/>
+            android:id="@+id/erase" />
 
         <android.support.design.widget.FloatingActionButton
             android:layout_width="50dp"
@@ -63,7 +63,7 @@
             android:id="@+id/trash"
             android:layout_marginRight="5dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/trash"/>
+            android:src="@drawable/trash" />
 
         <android.support.design.widget.FloatingActionButton
             android:layout_width="50dp"

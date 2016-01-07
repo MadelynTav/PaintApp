@@ -12,7 +12,9 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
+
 import java.io.File;
 import java.util.UUID;
 
@@ -48,6 +50,8 @@ public class MainActivity extends AppCompatActivity {
         save = (FloatingActionButton) findViewById(R.id.save);
         trash = (FloatingActionButton) findViewById(R.id.trash);
         customView.setDrawingCacheEnabled(true);
+
+
     }
 
     @Override
@@ -60,7 +64,8 @@ public class MainActivity extends AppCompatActivity {
                 customView.setErase(false);
                 brushDialog = new Dialog(context);
                 brushDialog.setContentView(R.layout.brush_size_picker);
-                brushDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+                colorDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+                brushDialog.setCanceledOnTouchOutside(true);
                 brushDialog.show();
             }
         });
@@ -72,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
                 colorDialog = new Dialog(context);
                 colorDialog.setContentView(R.layout.color_picker);
                 colorDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+                colorDialog.setCanceledOnTouchOutside(true);
                 colorDialog.show();
             }
         });
@@ -83,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
                 brushDialog = new Dialog(context);
                 brushDialog.setContentView(R.layout.eraser_size_picker);
                 brushDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-
+                brushDialog.setCanceledOnTouchOutside(true);
                 brushDialog.show();
             }
         });
